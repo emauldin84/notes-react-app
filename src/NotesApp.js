@@ -52,6 +52,26 @@ class NotesApp extends React.Component{
             selectedNote: id,
         })
     }
+
+    _updateNote = (idToUpdate, newText) => {
+        // Can't simply reassign the item in the array
+        // We need to create a new array with all the existing notes
+        // But, we want to use the new text for the note with id === idToUpdate
+        const updatedNotes1 = this.state.notes.map(note => {
+            if (note.id === idToUpdate) {
+                // return the modified version
+                return {
+                    ...note,        // spread out all the existing key-value pairs...
+                    text: newText   // ...but, overwrite just the text property
+                }
+            } else {
+                // return a copy of the note as-is.
+                return {
+                    ...note
+                };
+            } 
+        });
+    }
 }
 
 export default NotesApp
