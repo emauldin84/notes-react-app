@@ -40,7 +40,7 @@ class NotesApp extends React.Component{
                     <NotesList notes={this.state.notes} handleSelection={this._selectNote}/>
                 </div>
                 <div className={styles.detail}>
-                    <NotesDetail note={theNote}/>
+                    <NotesDetail note={theNote} handleSave={this._updateNote}/>
                 </div>
             </div>
         )
@@ -57,6 +57,8 @@ class NotesApp extends React.Component{
         // Can't simply reassign the item in the array
         // We need to create a new array with all the existing notes
         // But, we want to use the new text for the note with id === idToUpdate
+
+        
         const updatedNotes1 = this.state.notes.map(note => {
             if (note.id === idToUpdate) {
                 // return the modified version
@@ -71,6 +73,34 @@ class NotesApp extends React.Component{
                 };
             } 
         });
+        this.setState({
+            notes: updatedNotes1 // Already a copy
+        })
+
+        // ================================================================
+        // Version 2a:
+        // const updatedNotes2 = this.state.notes.filter(note => {
+        //     return note.id !== idToUpdate;
+        // })
+        // const theNoteToUpdate = this.state.notes.find(note => note.id === idToUpdate);
+        // this.setState({
+        //     notes: [
+        //         ...updatedNotes2,
+        //         {
+        //             ...theNoteToUpdate,
+        //             text: newText
+        //         }
+        //     ]
+        // });
+        // ================================================================
+
+        // Alternatively, Version 2b:
+        // this.setState({
+        //     notes: updatedNotes2.concat ({
+        //         ...theNoteToUpdate,
+        //         text: newText
+        //     })
+        // })
     }
 }
 

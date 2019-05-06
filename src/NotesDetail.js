@@ -40,6 +40,7 @@ class NotesDetail extends React.Component {
             // Ternary here to flip between form and div based on click in or no?
             <div>
                 <button onClick={this._toggleIsEditing}>Edit Note</button>
+                <button onClick={this._saveDraft}>Save</button>
                 <br/>
                 {
                     isEditing ? <NotesEditor 
@@ -52,6 +53,9 @@ class NotesDetail extends React.Component {
                 
             </div>
         )
+    }
+    _saveDraft = () => {
+        this.props.handleSave(this.state.id, this.state.draftText);
     }
     _changeDraftText = (newText) => {
         this.setState({
