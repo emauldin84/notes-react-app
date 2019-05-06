@@ -40,7 +40,9 @@ class NotesApp extends React.Component{
                     <NotesList notes={this.state.notes} handleSelection={this._selectNote}/>
                 </div>
                 <div className={styles.detail}>
-                    <NotesDetail note={theNote} handleSave={this._updateNote}/>
+                    <NotesDetail 
+                        note={theNote} 
+                        handleSave={this._updateNote}/>
                 </div>
             </div>
         )
