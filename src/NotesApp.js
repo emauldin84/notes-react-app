@@ -7,6 +7,7 @@ class NotesApp extends React.Component{
     constructor(props){
         super(props)
         this.state={
+            selectedNote: '1001',
             notes: [    // This will hold an array of objects
                 {
                     id: '1001',
@@ -33,7 +34,7 @@ class NotesApp extends React.Component{
         return(
             <div className={styles.app}>
                 <div className={styles.list}>
-                    <NotesList notes={this.state.notes}/>
+                    <NotesList notes={this.state.notes} handleSelection={this._selectNote}/>
                 </div>
                 <div className={styles.detail}>
                     <NotesDetail />
@@ -41,6 +42,12 @@ class NotesApp extends React.Component{
             </div>
         )
 
+    }
+    _selectNote = (id) => {
+        // choose a note to show
+        this.setState({
+            selectedNote: id,
+        })
     }
 }
 
