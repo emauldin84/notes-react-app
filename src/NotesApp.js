@@ -31,13 +31,16 @@ class NotesApp extends React.Component{
     }
 
     render() {
+        // returns note where ids match
+        const theNote = this.state.notes.find(note => this.state.selectedNote === note.id)
+
         return(
             <div className={styles.app}>
                 <div className={styles.list}>
                     <NotesList notes={this.state.notes} handleSelection={this._selectNote}/>
                 </div>
                 <div className={styles.detail}>
-                    <NotesDetail />
+                    <NotesDetail note={theNote}/>
                 </div>
             </div>
         )
